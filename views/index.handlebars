@@ -1,0 +1,71 @@
+<div class="burgers">
+	<img id="burger-image" src="https://image.shutterstock.com/image-vector/hamburger-cartoon-vector-illustration-isolated-600w-257426938.jpg">
+	<h2 class="heading">Eat-Da-Burger!</h2>
+	<style>
+		#burger-image{
+			height: 20%;
+			width: 20%;
+		margin-left: 37%;
+		}
+		.heading{
+			background-color: rgb(226, 193, 102);
+			text-align: center;
+			height: 30%;
+			width: 50%;
+			margin-left: 23%;
+		}
+		
+	</style>
+  <div class="adder">
+<h2>Add a Burger</h2>
+<form id="add-burger" action="/burgers" class="create-form" method="POST">
+    <div class="form-group col-md-8">
+        <input type="text" id="enter-burger" name="burger_name" class="form-control">
+        <button type="submit" class="btn btn-default" id="submit-burger">ADD BURGER</button>
+    </div>
+</form>
+  
+  <style> .btn {
+  background-color: red; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.btn {font-size: 10px;}
+
+
+  </style>
+<div class="container">
+    <div class="row">
+        <div class="col" id="list-burgers">
+            <h2 class="burger-title text-center">Burgers Available</h2>
+            {{#each burgers}}
+            {{#unless this.devoured}}
+            <div class="available-burgers">
+                <form action="/burgers/{{this.id}}?_method=PUT" method="POST" class="update-button">
+                    {{this.burger_name}}
+                    <button type="submit" class="btn- btn-default" id="burger-ready">DEVOUR IT</button>
+                </form>
+            </div>
+            {{/unless}}
+            {{/each}}
+        </div>
+	     <div class="col" id="list-devoured">
+            <h2 class="burger-title text-center">Burgers Devoured</h2>
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <div class="devoured-burgers">
+                {{this.burger_name}}
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
